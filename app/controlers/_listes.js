@@ -14,7 +14,7 @@ dsm.controlers.lists =
         if(dsm.controlers.session.check() == true)
         {
             dsm.controlers.lists.view = view;
-            dsm.controlers.lists.getRows(view);
+            dsm.models.lists.getRows(view);
         }
         else
         {

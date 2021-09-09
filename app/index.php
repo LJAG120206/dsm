@@ -43,6 +43,7 @@
         <link href="views/views.css" rel="stylesheet" />
         <link href="views/_login.css" rel="stylesheet" />
         <link href="views/_listes.css" rel="stylesheet" />
+        <link href="views/forms_css/_forms.css" rel="stylesheet" />
 
         <!-- Reports --> 
         <script src="reports/reports.js"></script>

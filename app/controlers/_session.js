@@ -55,6 +55,8 @@ dsm.controlers.session =
         sessionStorage.removeItem("sessionUserId");
         sessionStorage.removeItem("sessionUserName");
 
+        document.body.innerHTML = "";
+
         dsm.controlers.login.openForm();
     }
 }

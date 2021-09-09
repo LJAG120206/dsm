@@ -10,32 +10,18 @@ dsm.views.forms =
 
         dsm.views.overlay.start();
 
-        createElement("body","div","formWindow");
-
-        createElement("formWindow","div","formWindowMain");
-        createElement("formWindow","div","formWindowCmd");
+        let formWindowId = "formWindow";
+        createElement("body","div",formWindowId);
         
-        /*
-        
-        createElement("divForm","form","form");
-
-        let sexe = {"M": "Masculin", "F": "Féminin", "A": "Autres"};
+        createElement(formWindowId,"div","formWindowTitle");
+        $("formWindowTitle").innerHTML = dsm.views.forms.title;
+        createElement(formWindowId,"div","formWindowMain");
+        createElement(formWindowId,"div","formWindowCmd");
 
         for(let i=1; i<records[0].length ; i++ )
         {
-            
-            if(records[0][i] != "Sexe")
-            {
-                dsm.views.forms.createInput(records[0][i], i);
-            }
-            else
-            {
-                dsm.views.forms.createRadio(records[0][i],sexe);
-            }
+            dsm.views.forms.createInput(records[0][i], i);
         }
-
-        */
-
     },
 
     fill:()=>
@@ -47,7 +33,7 @@ dsm.views.forms =
     {
         console.log("dsm.views.forms.createInput();");
 
-        createElement("form","div","div"+fieldName);
+        createElement("formWindowMain","div","div"+fieldName);
         createElement("div"+fieldName,"input","input"+fieldName);
         $("input"+fieldName).setAttribute("value", records[1][index]);
         createElement("div"+fieldName,"label","label"+fieldName);

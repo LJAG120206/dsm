@@ -29,7 +29,7 @@ dsm.views.lists =
         HTML += "<tbody id='tbody'>";
         for(r=1; r<=rows; r++) 
         {
-            HTML += "<tr id='r"+r+"' onclick=\"dsm.controlers.lists.onclick(this.id,'"+dsm.models.lists.view+"',"+r+");\">";
+            HTML += "<tr id='r"+r+"' onclick=\"dsm.controlers.lists.onclick(this.id,'"+dsm.controlers.lists.view+"',"+r+");\">";
             for(c=0; c < cols; c++) 
             {
                 //HTML += "<td id='r"+r+"c"+c+"' onclick='dsm.controlers.lists.select(this.id);' ondblclick=\"dsm.controlers.form.openForm("+dsm.models.lists.view+","+r+");\"></td>";
@@ -48,9 +48,9 @@ dsm.views.lists =
         HTML = '';
 
         HTML += "<div id='cmdList'>";
-        HTML += '<button title="Ajouter un adhérent" onclick="dsm.controlers.accueil.openForm()"><img src="fonts/Font-Awesome/svgs/regular/plus-square.svg"/></button>';
-        HTML += '<button title="Supprimer un plusieurs adhérents" onclick="dsm.controlers.accueil.openForm()"><img src="fonts/Font-Awesome/svgs/regular/trash-alt.svg"/></button>';
-        HTML += '<button title="Fermer la liste" onclick="dsm.controlers.accueil.openForm()"><img src="fonts/Font-Awesome/svgs/regular/window-close.svg"/></button>';
+        HTML += '<button title="Ajouter un adhérent" onclick="dsm.controlers.accueil.openForm()">Ajouter</button>';
+        HTML += '<button title="Supprimer un plusieurs adhérents" onclick="dsm.controlers.accueil.openForm()">Supprimer</button>';
+        HTML += '<button title="Fermer la liste" onclick="dsm.controlers.accueil.openForm()">Fermer</button>';
         HTML += "</div>";
 
         $('footer').innerHTML = HTML;
@@ -68,8 +68,8 @@ dsm.views.lists =
         for(c=0; c<dsm.models.lists.cols; c++)
         {
             $('r0c'+c).style.width    = dsm.views.lists.widths[c];
-            $('r0c'+c).style.minWidth = dsm.views.lists.widths[c];
-            $('r0c'+c).style.maxWidth = dsm.views.lists.widths[c];
+            //$('r0c'+c).style.minWidth = dsm.views.lists.widths[c];
+            //$('r0c'+c).style.maxWidth = dsm.views.lists.widths[c];
         }
 
         for(r=0; r<dsm.models.lists.rows; r++)

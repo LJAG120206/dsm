@@ -1,0 +1,43 @@
+#formWindow
+{
+    position: absolute;
+    z-index: 200;
+    height: 600px;
+    width: 300px;
+    left: calc((100vw - 300px)/2);
+    top: calc((100vh - 200px)/2);
+    background-color: var(--foreground-color);
+}
+
+#formWindowTitle
+{
+    position: absolute;
+    top: 0;
+    width: calc(100% - 40px);
+    height: 30px;
+    padding: 0 20px;
+    line-height: 30px;
+    background: var(--foreground-color);
+    box-shadow: 0px 3px 5px var(--shadow-color);
+}
+
+#formWindowMain
+{
+    position: absolute;
+    width: 100%;
+    top: 31px;
+    bottom: 41px;
+    background: var(--foreground-color);
+    box-shadow: 0px 3px 5px var(--shadow-color);
+    overflow-y: scroll;
+}
+
+#formWindowCmd
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: var(--foreground-color);
+    box-shadow: 0px 3px 5px var(--shadow-color);
+}

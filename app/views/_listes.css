@@ -104,18 +104,6 @@ td:first-child
     text-align: right;
 }
 
-#cmdList button
-{
-    position: relative;
-    margin: 0px 16px 0px 0px;
-    padding: 0px;
-    box-shadow: none;
-    border: none;
-    width: 24px;
-    height: 24px;
-    background: none;
-}
-
 #cmdList img
 {
     position: relative;
