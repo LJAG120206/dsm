@@ -3,14 +3,22 @@ dsm.views.forms =
     title: "",
     records: [],
 
-    createForm: () =>
+    openForm: () =>
     {
-        console.log("dsm.views.forms.createForm();");
+        console.log("dsm.views.forms.openForm();");
         records = dsm.models.forms.records;
 
-        $("main").innerHTML ="";
-        createElement("main","form","form");
+        dsm.views.overlay.start();
+
+        createElement("body","div","formWindow");
+
+        createElement("formWindow","div","formWindowMain");
+        createElement("formWindow","div","formWindowCmd");
         
+        /*
+        
+        createElement("divForm","form","form");
+
         let sexe = {"M": "Masculin", "F": "Féminin", "A": "Autres"};
 
         for(let i=1; i<records[0].length ; i++ )
@@ -26,6 +34,13 @@ dsm.views.forms =
             }
         }
 
+        */
+
+    },
+
+    fill:()=>
+    {
+        console.log('dsm.views.forms.fill()');
     },
 
     createInput: (fieldName, index) =>

@@ -13,8 +13,8 @@ dsm.controlers.lists =
         console.log("dsm.controlers.lists.openForm();");
         if(dsm.controlers.session.check() == true)
         {
-            dsm.models.lists.view = view;
-            dsm.models.lists.getRows(view);
+            dsm.controlers.lists.view = view;
+            dsm.controlers.lists.getRows(view);
         }
         else
         {
@@ -30,7 +30,7 @@ dsm.controlers.lists =
         {
             dsm.models.lists.records = JSON.parse(responseText);
 
-            switch(dsm.models.lists.view)
+            switch(dsm.controlers.lists.view)
             {
                 case 'adherents'    :   dsm.views.lists.widths = ['50px','15%','15%','5%','15%','15%','7%','*'];
                                         dsm.views.lists.title  = "Liste des Adhérents";

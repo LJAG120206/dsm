@@ -50,6 +50,11 @@ dsm.controlers.session =
         dsm.models.session.userid   = '';
         dsm.models.session.username = '';
 
+        sessionStorage.removeItem("sessionId");
+        sessionStorage.removeItem("sessionTime");
+        sessionStorage.removeItem("sessionUserId");
+        sessionStorage.removeItem("sessionUserName");
+
         dsm.controlers.login.openForm();
     }
 }

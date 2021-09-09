@@ -7,8 +7,8 @@ dsm.controlers.forms =
         console.log("dsm.controlers.forms.openForm()");
         if(dsm.controlers.session.check() == true)
         {
-            dsm.models.forms.view = view;
-            dsm.models.forms.formCall(view,dsm.models.lists.records[id][0]);
+            dsm.controlers.forms.view = view;
+            dsm.controlers.forms.formCall(view,dsm.models.lists.records[id][0]);
         }
         else
         {
@@ -26,7 +26,7 @@ dsm.controlers.forms =
         {
             dsm.models.forms.records = JSON.parse(responseText);
 
-            switch(dsm.models.forms.view)
+            switch(dsm.controlers.forms.view)
             {
                 case 'adherents'    :   dsm.views.forms.title  = "Formulaire des Adhérents";
                                         break;
@@ -40,8 +40,8 @@ dsm.controlers.forms =
 
             console.log(dsm.views.forms.title);
 
-            dsm.views.forms.createForm();
-            //dsm.views.forms.fill();
+            dsm.views.forms.openForm();
+            dsm.views.forms.fill();
         }
     },
 

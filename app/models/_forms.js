@@ -1,5 +1,7 @@
 dsm.models.forms = 
 {
+    records : [],
+
     formCall: (view, id)=>
     {
         console.log("dsm.models.forms.formCall()");

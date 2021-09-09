@@ -48,4 +48,10 @@
                         <li>Ventes</li>
                     </ul>
                 </li>
+                <li>Mon compte 
+                    <ul>
+                        <li>Gérer mon compte</li>
+                        <li onclick="dsm.controlers.session.logout();">Déconnexion</li>
+                    </ul>
+                </li>
             </ul>
