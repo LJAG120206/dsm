@@ -41,23 +41,33 @@ dsm.views.forms =
         $("label"+fieldName).innerHTML = fieldName;
     },
 
-    createRadio: (fieldName, values )=>
+    createSelect:() =>
     {
-        //créer les boutons à cliquer pour selectioner le sexe 
-        createElement("form","div","div"+fieldName);
-        createElement("div"+fieldName,"p","p"+fieldName);
-        $("p"+fieldName).innerHTML = fieldName+" : ";
+        
 
-        for(let v in values)
-        {
-            createElement("div"+fieldName, "input", "input"+values[v]);
-            $("input"+values[v]).setAttribute("type","radio");
-            $("input"+values[v]).setAttribute("value", v);
-            $("input"+values[v]).innerHTML = values[v];
-            $("input"+values[v]).setAttribute("name", fieldName.toLowerCase());
-            createElement("div"+fieldName, "label", values[v]);
-            $(values[v]).setAttribute("for", v);
-            $(values[v]).innerHTML = values[v];
-        }
-    }  
+
+
+
+
+    },
+
+    // createRadio: (fieldName, values )=>
+    // {
+    //     //créer les boutons à cliquer pour selectioner le sexe 
+    //     createElement("form","div","div"+fieldName);
+    //     createElement("div"+fieldName,"p","p"+fieldName);
+    //     $("p"+fieldName).innerHTML = fieldName+" : ";
+
+    //     for(let v in values)
+    //     {
+    //         createElement("div"+fieldName, "input", "input"+values[v]);
+    //         $("input"+values[v]).setAttribute("type","radio");
+    //         $("input"+values[v]).setAttribute("value", v);
+    //         $("input"+values[v]).innerHTML = values[v];
+    //         $("input"+values[v]).setAttribute("name", fieldName.toLowerCase());
+    //         createElement("div"+fieldName, "label", values[v]);
+    //         $(values[v]).setAttribute("for", v);
+    //         $(values[v]).innerHTML = values[v];
+    //     }
+    // }  
 }
