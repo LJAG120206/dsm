@@ -6,7 +6,7 @@ dsm.views.forms =
     openForm: () =>
     {
         console.log("dsm.views.forms.openForm();");
-        records = dsm.models.forms.records;
+        this.records = dsm.models.forms.records;
 
         dsm.views.overlay.start();
 
@@ -18,9 +18,11 @@ dsm.views.forms =
         createElement(formWindowId,"div","formWindowMain");
         createElement(formWindowId,"div","formWindowCmd");
 
-        for(let i=1; i<records[0].length ; i++ )
+        for(let i=1; i<this.records[0].length ; i++ )
         {
-            dsm.views.forms.createInput(records[0][i], i);
+            dsm.views.forms.createInput(this.records[0][i], i);
+
+            
         }
     },
 
@@ -35,29 +37,49 @@ dsm.views.forms =
 
         createElement("formWindowMain","div","div"+fieldName);
         createElement("div"+fieldName,"input","input"+fieldName);
-        $("input"+fieldName).setAttribute("value", records[1][index]);
+        $("input"+fieldName).setAttribute("value", this.records[1][index]);
         createElement("div"+fieldName,"label","label"+fieldName);
         $("input"+fieldName).setAttribute("placeholder", fieldName);
         $("label"+fieldName).innerHTML = fieldName;
     },
 
-    createRadio: (fieldName, values )=>
+    createSelect: (fieldName) =>
     {
-        //créer les boutons à cliquer pour selectioner le sexe 
-        createElement("form","div","div"+fieldName);
-        createElement("div"+fieldName,"p","p"+fieldName);
-        $("p"+fieldName).innerHTML = fieldName+" : ";
+        console.log(fieldName);
 
-        for(let v in values)
-        {
-            createElement("div"+fieldName, "input", "input"+values[v]);
-            $("input"+values[v]).setAttribute("type","radio");
-            $("input"+values[v]).setAttribute("value", v);
-            $("input"+values[v]).innerHTML = values[v];
-            $("input"+values[v]).setAttribute("name", fieldName.toLowerCase());
-            createElement("div"+fieldName, "label", values[v]);
-            $(values[v]).setAttribute("for", v);
-            $(values[v]).innerHTML = values[v];
-        }
-    }  
+        createElement("formWindowMain","div","div"+fieldName);
+        createElement("div"+fieldName,"select","input"+fieldName);
+        createElement("div"+fieldName,"label","label"+fieldName);
+        $("label"+fieldName).innerHTML = fieldName;
+    },
+
+    createTextArea: (fieldName) =>
+    {
+        console.log(fieldName);
+
+        createElement("formWindowMain","div","div"+fieldName);
+        createElement("div"+fieldName,"textArea","input"+fieldName);
+        createElement("div"+fieldName,"label","label"+fieldName);
+        $("label"+fieldName).innerHTML = fieldName;
+    }
+
+    // createRadio: (fieldName, values )=>
+    // {
+    //     //créer les boutons à cliquer pour selectioner le sexe 
+    //     createElement("form","div","div"+fieldName);
+    //     createElement("div"+fieldName,"p","p"+fieldName);
+    //     $("p"+fieldName).innerHTML = fieldName+" : ";
+
+    //     for(let v in values)
+    //     {
+    //         createElement("div"+fieldName, "input", "input"+values[v]);
+    //         $("input"+values[v]).setAttribute("type","radio");
+    //         $("input"+values[v]).setAttribute("value", v);
+    //         $("input"+values[v]).innerHTML = values[v];
+    //         $("input"+values[v]).setAttribute("name", fieldName.toLowerCase());
+    //         createElement("div"+fieldName, "label", values[v]);
+    //         $(values[v]).setAttribute("for", v);
+    //         $(values[v]).innerHTML = values[v];
+    //     }
+    // }  
 }
