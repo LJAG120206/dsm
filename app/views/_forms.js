@@ -11,18 +11,34 @@ dsm.views.forms =
         dsm.views.overlay.start();
 
         let formWindowId = "formWindow";
-        createElement("body","div",formWindowId);
+        createElement("body","form",formWindowId);
         
         createElement(formWindowId,"div","formWindowTitle");
         $("formWindowTitle").innerHTML = dsm.views.forms.title;
         createElement(formWindowId,"div","formWindowMain");
+        console.log("Offset : "+$("formWindowMain").scrollHeight);
+        $("formWindowMain").style.height = scrollHeight 
         createElement(formWindowId,"div","formWindowCmd");
 
         for(let i=1; i<this.records[0].length ; i++ )
         {
-            dsm.views.forms.createInput(this.records[0][i], i);
+            let comment = this.records[0][i].split("_");
+            let fieldName = comment[0];
+            let type = comment[1];
+            let value = this.records[1][i];
 
-            
+            switch (type) 
+            {
+                case "S":
+                    dsm.views.forms.createSelect(fieldName, value);
+                    break;       
+                case "TA":
+                    dsm.views.forms.createTextArea(fieldName, value);
+                    break;
+                default:
+                    dsm.views.forms.createInput(fieldName, value);
+                    break;
+            }  
         }
     },
 
@@ -31,19 +47,19 @@ dsm.views.forms =
         console.log('dsm.views.forms.fill()');
     },
 
-    createInput: (fieldName, index) =>
+    createInput: (fieldName, value) =>
     {
         console.log("dsm.views.forms.createInput();");
 
         createElement("formWindowMain","div","div"+fieldName);
         createElement("div"+fieldName,"input","input"+fieldName);
-        $("input"+fieldName).setAttribute("value", this.records[1][index]);
+        $("input"+fieldName).setAttribute("value", value);
         createElement("div"+fieldName,"label","label"+fieldName);
         $("input"+fieldName).setAttribute("placeholder", fieldName);
         $("label"+fieldName).innerHTML = fieldName;
     },
 
-    createSelect: (fieldName) =>
+    createSelect: (fieldName, value) =>
     {
         console.log(fieldName);
 
@@ -53,13 +69,14 @@ dsm.views.forms =
         $("label"+fieldName).innerHTML = fieldName;
     },
 
-    createTextArea: (fieldName) =>
+    createTextArea: (fieldName, value) =>
     {
         console.log(fieldName);
 
         createElement("formWindowMain","div","div"+fieldName);
         createElement("div"+fieldName,"textArea","input"+fieldName);
         createElement("div"+fieldName,"label","label"+fieldName);
+        $("input"+fieldName).innerHTML = value;
         $("label"+fieldName).innerHTML = fieldName;
     }
 
