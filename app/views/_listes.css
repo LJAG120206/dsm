@@ -96,12 +96,20 @@ td:first-child
 #cmdList
 {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 50%;
+    top: 0;
+    right: 20px;
+    left: 0;
+    bottom: 0;
     height: 24px;
     border: none;
     text-align: right;
+}
+
+#cmdList button
+{
+    margin: 6px 0 0 8px;
+    line-height: 20px;
+    height: 28px;
 }
 
 #cmdList img
