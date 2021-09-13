@@ -15,9 +15,8 @@ dsm.views.forms =
         
         createElement(formWindowId,"div","formWindowTitle");
         $("formWindowTitle").innerHTML = dsm.views.forms.title;
-        createElement(formWindowId,"div","formWindowMain");
+        createElement(formWindowId,"div","formWindowMain")
         console.log("Offset : "+$("formWindowMain").scrollHeight);
-        $("formWindowMain").style.height = scrollHeight 
         createElement(formWindowId,"div","formWindowCmd");
 
         for(let i=1; i<this.records[0].length ; i++ )
