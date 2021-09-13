@@ -11,13 +11,23 @@ dsm.views.forms =
 
         dsm.views.overlay.start();
 
+        document.body.setAttribute("onresize","dsm.views.forms.resize();");
+
         let formWindowId = "formWindow";
         createElement("body","form",formWindowId);
 
         createElement(formWindowId,"div","formWindowTitle");
         $("formWindowTitle").innerHTML = dsm.views.forms.title;
         createElement(formWindowId,"div","formWindowMain");
+        createElement('formWindowMain','div','formContent');
         createElement(formWindowId,"div","formWindowCmd");
+        createElement('formWindowCmd','button','Enregistrer');
+        $('Enregistrer').innerHTML = "Enregistrer";
+        createElement('formWindowCmd','button','Fermer');
+        $('Fermer').innerHTML = "Fermer";
+        createElement('formWindowCmd','button','Supprimer');
+        $('Supprimer').innerHTML = "Supprimer";
+
 
         for(let i=1; i<this.records[0].length ; i++ )
         {
@@ -40,19 +50,30 @@ dsm.views.forms =
             }
         }
 
-        let maxH = window.innerHeight -30 -40;
-        let formH = $("formWindowMain").scrollHeight +30 +40;
+        dsm.views.forms.resize();
+                
+    },
 
+    resize:()=>
+    {
+        let maxH = window.innerHeight -40 -30 -40;
+        let formH = parseInt ($("formContent").getBoundingClientRect().height) +30 +40 +10;
+        console.log($("formContent").getBoundingClientRect().height);
         let marge = maxH - formH;
+
+        console.log("maxH : "+maxH+" , formH : "+formH+" , marge : "+marge);
 
         if(marge >= 0)
         {
-            $("formWindow").style.top = ((marge / 2) + 25) + 'px';
-            $("formWindow").style.bottom = ((marge / 2) + 35) + 'px';
+            console.log("test du form 1");
+            $("formWindow").style.top = ((marge / 2) + 70) + 'px';
+            $("formWindow").style.bottom = ((marge / 2) + 40) + 'px';
         }
         else
         {
-            $("formWindow").style.top = '31px';
+            console.log("test du form 2");
+
+            $("formWindow").style.top = '71px';
             $("formWindow").style.bottom = '41px';
         }
     },
@@ -66,7 +87,7 @@ dsm.views.forms =
     {
         console.log("dsm.views.forms.createInput();");
 
-        createElement("formWindowMain","div","div"+fieldName);
+        createElement("formContent","div","div"+fieldName);
         createElement("div"+fieldName,"input","input"+fieldName);
         $("input"+fieldName).setAttribute("value", value);
         createElement("div"+fieldName,"label","label"+fieldName);
@@ -78,7 +99,7 @@ dsm.views.forms =
     {
         console.log(fieldName);
 
-        createElement("formWindowMain","div","div"+fieldName);
+        createElement("formContent","div","div"+fieldName);
         createElement("div"+fieldName,"select","input"+fieldName);
         createElement("div"+fieldName,"label","label"+fieldName);
         $("label"+fieldName).innerHTML = fieldName;
@@ -88,7 +109,7 @@ dsm.views.forms =
     {
         console.log(fieldName);
 
-        createElement("formWindowMain","div","div"+fieldName);
+        createElement("formContent","div","div"+fieldName);
         createElement("div"+fieldName,"textArea","input"+fieldName);
         createElement("div"+fieldName,"label","label"+fieldName);
         $("input"+fieldName).innerHTML = value;

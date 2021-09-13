@@ -1,12 +1,15 @@
+@import url("_forms_benevoles.css");
+
 #formWindow
 {
     position: absolute;
     z-index: 200;
-    height: 200px;
-    width: 300px;
-    left: calc((100vw - 300px)/2);
-    top: calc((100vh - 200px)/2);
+    left: calc((100vw - 320px)/2);
+    right: calc((100vw - 320px)/2);
+    top: calc((100vh - 240px)/2);
+    bottom: calc((100vh - 240px)/2);
     background-color: var(--foreground-color);
+    margin: 0;
 }
 
 #formWindowTitle
@@ -36,8 +39,26 @@
 {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 15px);
     height: 40px;
     background: var(--foreground-color);
     box-shadow: 0px 3px 5px var(--shadow-color);
+    overflow: hidden;
+    text-align: right;
+    padding-right: 15px;
 }
+
+
+
+#formContent input,
+#formContent select,
+#formContent textarea
+{
+    margin:10px 10px 0 10px;
+}
+
+#formContent label
+{
+    margin: 0 0 0 15px;
+}
+

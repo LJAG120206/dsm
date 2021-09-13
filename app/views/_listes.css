@@ -105,13 +105,6 @@ td:first-child
     text-align: right;
 }
 
-#cmdList button
-{
-    margin: 6px 0 0 8px;
-    line-height: 20px;
-    height: 28px;
-}
-
 #cmdList img
 {
     position: relative;
