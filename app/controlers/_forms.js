@@ -21,10 +21,8 @@ dsm.controlers.forms =
     callback: (responseText) =>
     {
         console.log("dsm.controlers.forms.callback();");
-        console.log(responseText);
         if(responseText != '' && responseText.substring(0,6) != 'Erreur')
         {
-            console.log("test IF");
             dsm.models.forms.records = JSON.parse(responseText);
 
             switch(dsm.controlers.forms.view)
@@ -45,5 +43,30 @@ dsm.controlers.forms =
             dsm.views.forms.fill();
         }
     },
+
+    fillSelect:(tableName, value)=>
+    {
+        console.log("dsm.controlers.forms.fillSelect();");
+        if(dsm.controlers.session.check() == true)
+        {
+            dsm.models.forms.getSelectRows(tableName, value);
+        }
+        else
+        {
+            dsm.controlers.session.logout();
+        }
+    },
+
+    callbackSelect: (responseText, value)=>
+    {
+        console.log("dsm.controler.forms.callbackSelect();");
+
+        if(responseText != '' && responseText.substring(0,6) != 'Erreur')
+        {
+            let options = JSON.parse(responseText);
+
+            dsm.views.forms.fillSelect(options, value);
+        }
+    }
 
 }

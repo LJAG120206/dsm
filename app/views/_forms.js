@@ -101,8 +101,16 @@ dsm.views.forms =
 
         createElement("formContent","div","div"+fieldName);
         createElement("div"+fieldName,"select","input"+fieldName);
+
         createElement("div"+fieldName,"label","label"+fieldName);
         $("label"+fieldName).innerHTML = fieldName;
+        dsm.controlers.forms.fillSelect(fieldName, value);
+    },
+
+    fillSelect:(options, value)=>
+    {
+        console.log("dsm.views.forms.fillSelect();");
+        // faire un forEach pour créer les options du select, créer la vue et modifier SQL coté PHP...
     },
 
     createTextArea: (fieldName, value) =>

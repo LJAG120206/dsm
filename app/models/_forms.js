@@ -26,6 +26,30 @@ dsm.models.forms =
             }
         }
         ajax.send();
+    },
+
+    getSelectRows: (table, value)=>
+    {
+        console.log('dsm.models.forms.getSelectRows('+table+');');
+
+        let ajax = new XMLHttpRequest();
+
+        ajax.open("GET","models/sql.php?type=list&view="+table,true);
+        ajax.onreadystatechange = () =>
+        {
+            if (ajax.readyState == XMLHttpRequest.DONE)
+            {
+                if(ajax.statusText == 'OK')
+                {
+                    dsm.controlers.forms.callbackSelect(ajax.responseText, value);
+                }
+                else
+                {
+                    dsm.controlers.forms.callbackSelect("Erreur "+ajax.status);
+                }
+            }
+        }
+        ajax.send();
     }
     
 }

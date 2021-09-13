@@ -25,8 +25,32 @@ require_once("_sql.php");
         $a = [];
         $a[0] = $_GET["id"];
         $records = $SQL->select(TRUE, "WHERE `id` =?", $a);
+
+        foreach ($records[0] as $key => $value) 
+        {
+            $data = explode("_", $records[0][$key]);
+            if($data[1] == "S")
+            {
+                $data[0] = strtolower($data[0]);
+                $data[0] = convert($data[0]);
+                $SQL_opt = new SQL($data[0]);
+                $option = $SQL_opt->select(FALSE);
+                array_push($records,$option);
+            }
+        }
+        
+        
+
     }
-    
+    function convert($chaine)
+        {
+         $string= strtr($chaine,
+       
+        "ÀÁÂàÄÅàáâàäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ",
+        "aaaaaaaaaaaaooooooooooooeeeeeeeecciiiiiiiiuuuuuuuuynn");
+
+         return $string;
+        } ;
 
     
 
@@ -35,4 +59,5 @@ require_once("_sql.php");
         $json = json_encode($records);
         print($json);
     }
+
 }
