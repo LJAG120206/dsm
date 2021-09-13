@@ -1,0 +1,26 @@
+
+
+#divCP
+{
+    display: inline-block;
+    width: 90px;
+
+}
+
+#divLocalité
+{
+    display: inline-block;
+    width: calc(100% - 100px);
+    margin-left: 10px;
+}
+
+
+@media screen and (min-width:361px) and (max-width: 800px)
+{
+    
+}
+
+@media screen and (min-width:801px) 
+{
+    
+}

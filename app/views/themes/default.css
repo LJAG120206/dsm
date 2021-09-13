@@ -126,17 +126,27 @@ main
     overflow-y: scroll;
 }
 
-input
+
+input, 
+select,
+textarea
 {
+    display: inline-block;
+    width: calc(100% - 20px);
     margin: 10px;
     padding: 5px 10px;
-    height: 30px;
     background-color: white;
     border: 1px solid var(--border-color);
-    text-align: center;
+    text-align: left;
     font-family: 'Roboto Mono', 'Courier New', courier, monospace;
     font-weight: bold;
     font-size: 120%;
+}
+
+input,
+select
+{
+    height: 30px;
 }
 
 input:focus
@@ -148,18 +158,17 @@ input:focus
 
 button
 {
-    margin: 10px;
     padding: 0px 5px 0px 5px;
     width: 90px;
-    height: 30px;
     background-color: var(--btn-color);
     border: 1px solid var(--border-color);
     box-shadow: 0px 2px 4px var(--shadow-color), 0px 1px 2px white inset;
-    letter-spacing: 1.1;
-    line-height: 24px;
     vertical-align: middle;
     color: black;
     text-shadow: -1px -1px 1px white;
+    margin: 6px 0 0 8px;
+    line-height: 20px;
+    height: 28px;
 }
 
 button:hover,
