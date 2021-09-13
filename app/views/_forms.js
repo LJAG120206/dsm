@@ -3,6 +3,7 @@ dsm.views.forms =
     title: "",
     records: [],
 
+
     openForm: () =>
     {
         console.log("dsm.views.forms.openForm();");
@@ -12,11 +13,10 @@ dsm.views.forms =
 
         let formWindowId = "formWindow";
         createElement("body","form",formWindowId);
-        
+
         createElement(formWindowId,"div","formWindowTitle");
         $("formWindowTitle").innerHTML = dsm.views.forms.title;
-        createElement(formWindowId,"div","formWindowMain")
-        console.log("Offset : "+$("formWindowMain").scrollHeight);
+        createElement(formWindowId,"div","formWindowMain");
         createElement(formWindowId,"div","formWindowCmd");
 
         for(let i=1; i<this.records[0].length ; i++ )
@@ -26,18 +26,34 @@ dsm.views.forms =
             let type = comment[1];
             let value = this.records[1][i];
 
-            switch (type) 
+            switch (type)
             {
                 case "S":
-                    dsm.views.forms.createSelect(fieldName, value);
-                    break;       
+                dsm.views.forms.createSelect(fieldName, value);
+                break;
                 case "TA":
-                    dsm.views.forms.createTextArea(fieldName, value);
-                    break;
+                dsm.views.forms.createTextArea(fieldName, value);
+                break;
                 default:
-                    dsm.views.forms.createInput(fieldName, value);
-                    break;
-            }  
+                dsm.views.forms.createInput(fieldName, value);
+                break;
+            }
+        }
+
+        let maxH = window.innerHeight -30 -40;
+        let formH = $("formWindowMain").scrollHeight +30 +40;
+
+        let marge = maxH - formH;
+
+        if(marge >= 0)
+        {
+            $("formWindow").style.top = ((marge / 2) + 25) + 'px';
+            $("formWindow").style.bottom = ((marge / 2) + 35) + 'px';
+        }
+        else
+        {
+            $("formWindow").style.top = '31px';
+            $("formWindow").style.bottom = '41px';
         }
     },
 
