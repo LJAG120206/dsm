@@ -34,14 +34,14 @@ dsm.models.forms =
 
         let ajax = new XMLHttpRequest();
 
-        ajax.open("GET","models/sql.php?type=list&view="+table,true);
+        ajax.open("GET","models/sql.php?type=select&view="+table.toLowerCase(),true);
         ajax.onreadystatechange = () =>
         {
             if (ajax.readyState == XMLHttpRequest.DONE)
             {
                 if(ajax.statusText == 'OK')
                 {
-                    dsm.controlers.forms.callbackSelect(ajax.responseText, value);
+                    dsm.controlers.forms.callbackSelect(ajax.responseText,table, value);
                 }
                 else
                 {

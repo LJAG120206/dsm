@@ -25,6 +25,10 @@ dsm.views.forms =
         $('Enregistrer').innerHTML = "Enregistrer";
         createElement('formWindowCmd','button','Fermer');
         $('Fermer').innerHTML = "Fermer";
+        $('Fermer').onclick = function(){
+            dsm.views.overlay.stop();
+            $('formWindow').remove();
+         }
         createElement('formWindowCmd','button','Supprimer');
         $('Supprimer').innerHTML = "Supprimer";
 
@@ -107,10 +111,20 @@ dsm.views.forms =
         dsm.controlers.forms.fillSelect(fieldName, value);
     },
 
-    fillSelect:(options, value)=>
+    fillSelect:(options,fieldName, value)=>
     {
         console.log("dsm.views.forms.fillSelect();");
-        // faire un forEach pour créer les options du select, créer la vue et modifier SQL coté PHP...
+        // faire un forEach pour créer les options du select,
+        options.forEach(option => 
+        {
+            createElement("input"+fieldName,"option","option"+option[0]);   
+            $("option"+option[0]).value = option[0];
+            $("option"+option[0]).innerHTML = option[1];
+            if(option[0] == value)
+            {
+                $("option"+option[0]).setAttribute("selected",true);
+            }
+        });
     },
 
     createTextArea: (fieldName, value) =>
