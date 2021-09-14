@@ -57,7 +57,7 @@ dsm.controlers.forms =
         }
     },
 
-    callbackSelect: (responseText, value)=>
+    callbackSelect: (responseText,table, value)=>
     {
         console.log("dsm.controler.forms.callbackSelect();");
 
@@ -65,7 +65,7 @@ dsm.controlers.forms =
         {
             let options = JSON.parse(responseText);
 
-            dsm.views.forms.fillSelect(options, value);
+            dsm.views.forms.fillSelect(options,table,value);
         }
     }
 

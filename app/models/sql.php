@@ -1,5 +1,4 @@
 <?php
-header('content-type:application/json');
 require_once("../config.php");
 require_once("../common.php");
 require_once("_sql.php");
@@ -19,45 +18,31 @@ require_once("_sql.php");
     if($type=="list")
     {
         $records = $SQL->select(TRUE, $limit);
+        if($SQL->count > 0)
+        {
+            header('content-type: application/json');
+            print(json_encode($records));
+        }
     }
     else if($type=="form" && is_numeric($_GET['id']) == TRUE)
     {
         $a = [];
         $a[0] = $_GET["id"];
         $records = $SQL->select(TRUE, "WHERE `id` =?", $a);
-
-        foreach ($records[0] as $key => $value) 
+        if($SQL->count > 0)
         {
-            $data = explode("_", $records[0][$key]);
-            if($data[1] == "S")
-            {
-                $data[0] = strtolower($data[0]);
-                $data[0] = convert($data[0]);
-                $SQL_opt = new SQL($data[0]);
-                $option = $SQL_opt->select(FALSE);
-                array_push($records,$option);
-            }
-        }
-        
-        
-
-    }
-    function convert($chaine)
-        {
-         $string= strtr($chaine,
-       
-        "ÀÁÂàÄÅàáâàäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ",
-        "aaaaaaaaaaaaooooooooooooeeeeeeeecciiiiiiiiuuuuuuuuynn");
-
-         return $string;
-        } ;
-
+            header('content-type: application/json');
+            print(json_encode($records));
     
-
-    if($SQL->count > 0)
-    {
-        $json = json_encode($records);
-        print($json);
+        }
     }
-
+    else if($type =="select")
+    {
+        $records = $SQL->select(FALSE, $limit);
+        if($SQL->count > 0)
+        {
+            header('content-type: application/json');
+            print(json_encode($records));
+        }
+    }
 }
