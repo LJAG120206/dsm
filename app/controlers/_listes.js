@@ -52,9 +52,18 @@ dsm.controlers.lists =
         }
     },
 
-    select:()=>
+    select:(n)=>
     {
         console.log("dsm.controlers.lists.select()");
+        let id = $(n+'c0').innerHTML;
+        if( id != '' )
+        {
+            let found = false;
+            if(selected)
+            $(n).style.boxShadow = "0px 0px 30px 20px lightblue inset";
+            selected.push($(n+"c0").innerHTML);
+        }
+
     },
 
 
@@ -70,7 +79,7 @@ dsm.controlers.lists =
             console.log(Date.now()-dsm.controlers.lists.delay);
             
             dsm.controlers.lists.click++;
-            dsm.controlers.lists.pid = setTimeout("dsm.controlers.lists.select(); dsm.controlers.lists.delay=0; dsm.controlers.lists.click = 0;", 500);
+            dsm.controlers.lists.pid = setTimeout("dsm.controlers.lists.select('"+n+"'); dsm.controlers.lists.delay=0; dsm.controlers.lists.click = 0;", 500);
 
         }  
         else if(dsm.controlers.lists.click > 0)
