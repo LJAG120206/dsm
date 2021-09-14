@@ -55,15 +55,28 @@ dsm.controlers.lists =
     select:(n)=>
     {
         console.log("dsm.controlers.lists.select()");
-        let id = $(n+'c0').innerHTML;
-        if( id != '' )
+        let id = $(n+"c0").innerHTML;
+        let selected = dsm.controlers.lists.selected;
+        if(id != "")
         {
             let found = false;
-            if(selected)
-            $(n).style.boxShadow = "0px 0px 30px 20px lightblue inset";
-            selected.push($(n+"c0").innerHTML);
-        }
+            for(let i = 0 ; i < selected.length; i ++)
+            {
+                if(selected[i] == id)
+                {
+                    $(n).style.boxShadow = "none";
+                    selected.splice(i,1);
+                    found = true;
+                    break;
+                }
+            }
 
+            if(found == false)
+            {
+                $(n).style.boxShadow = "0px 0px 30px 15px lightblue  inset";
+                selected.push(id);
+            }
+        }
     },
 
 
