@@ -53,33 +53,31 @@ dsm.controlers.lists =
         }
     },
 
-    select:(id)=>
+    select:(n)=>
     {
         console.log("dsm.controlers.lists.select()");
-
-        let value = $(id+"c0").innerHTML;
-
-        if(value != '')
+        let id = $(n+"c0").innerHTML;
+        let selected = dsm.controlers.lists.selected;
+        if(id != "")
         {
-            if(!dsm.controlers.lists.boxLine.includes(value))
+            let found = false;
+            for(let i = 0 ; i < selected.length; i ++)
             {
-                $(id).style.boxShadow = "inset 0px 0px 30px 15px lightblue";
-                dsm.controlers.lists.boxLine.push(value);
-            }
-            else
-            {
-                let i = 0;
-                dsm.controlers.lists.boxLine.forEach(pushed => 
+                if(selected[i] == id)
                 {
-                    if(value == pushed)
-                    {
-                        dsm.controlers.lists.boxLine.splice(i, 1)
-                        $(id).style.boxShadow = "";
-                        i++;
-                    }
-                });
+                    $(n).style.boxShadow = "none";
+                    selected.splice(i,1);
+                    found = true;
+                    break;
+                }
             }
-        } 
+
+            if(found == false)
+            {
+                $(n).style.boxShadow = "0px 0px 30px 15px lightblue  inset";
+                selected.push(id);
+            }
+        }
     },
 
 
