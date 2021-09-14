@@ -5,6 +5,7 @@ dsm.controlers.lists =
     click : 0,
     pid : null,
     delay: 0,
+    boxLine: Array(),
 
     
 
@@ -52,9 +53,33 @@ dsm.controlers.lists =
         }
     },
 
-    select:()=>
+    select:(id)=>
     {
         console.log("dsm.controlers.lists.select()");
+
+        let value = $(id+"c0").innerHTML;
+
+        if(value != '')
+        {
+            if(!dsm.controlers.lists.boxLine.includes(value))
+            {
+                $(id).style.boxShadow = "inset 0px 0px 30px 15px lightblue";
+                dsm.controlers.lists.boxLine.push(value);
+            }
+            else
+            {
+                let i = 0;
+                dsm.controlers.lists.boxLine.forEach(pushed => 
+                {
+                    if(value == pushed)
+                    {
+                        dsm.controlers.lists.boxLine.splice(i, 1)
+                        $(id).style.boxShadow = "";
+                        i++;
+                    }
+                });
+            }
+        } 
     },
 
 
@@ -70,7 +95,7 @@ dsm.controlers.lists =
             console.log(Date.now()-dsm.controlers.lists.delay);
             
             dsm.controlers.lists.click++;
-            dsm.controlers.lists.pid = setTimeout("dsm.controlers.lists.select(); dsm.controlers.lists.delay=0; dsm.controlers.lists.click = 0;", 500);
+            dsm.controlers.lists.pid = setTimeout("dsm.controlers.lists.select('"+n+"'); dsm.controlers.lists.delay=0; dsm.controlers.lists.click = 0;", 500);
 
         }  
         else if(dsm.controlers.lists.click > 0)

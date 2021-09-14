@@ -32,7 +32,6 @@ dsm.views.lists =
             HTML += "<tr id='r"+r+"' onclick=\"dsm.controlers.lists.onclick(this.id,'"+dsm.controlers.lists.view+"',"+r+");\">";
             for(c=0; c < cols; c++) 
             {
-                //HTML += "<td id='r"+r+"c"+c+"' onclick='dsm.controlers.lists.select(this.id);' ondblclick=\"dsm.controlers.form.openForm("+dsm.models.lists.view+","+r+");\"></td>";
                 HTML += "<td id='r"+r+"c"+c+"'></td>";
                
             }
