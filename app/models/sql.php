@@ -11,7 +11,6 @@ require_once("_sql.php");
 
     $type = trim($_GET['type']);
     $view = trim($_GET['view']);
-
     
     if($type=="list")
     {
@@ -56,9 +55,16 @@ require_once("_sql.php");
     {
         header('content-type: text/plain');
 
-        $view = 'identites';
+        switch($view)
+        {
+            case 'adherents'    :   $table = 'identites'; break;
+            case 'eleves'       :   $table = 'identites'; break;
+            case 'professeurs'  :   $table = 'identites'; break;
+            case 'benevoles'    :   $table = 'identites'; break;
+            case 'bureau'       :   $table = 'identites'; break;
+        }
 
-        $SQL = new SQL($view);
+        $SQL = new SQL($table);
         $SQL->setFetchMode(1);
 
         $ids  = trim($_POST['ids']);

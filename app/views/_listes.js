@@ -6,12 +6,13 @@ dsm.views.lists =
     openForm: () =>
     {
         let cols = dsm.models.lists.records[0].length;
+        let rows = dsm.models.lists.records.length -1;
         console.log('dsm.views.lists.openForm('+cols+');');
 
         $('title').innerHTML = dsm.views.lists.title.toUpperCase();
 
-        mainHeight = parseInt($('main').getBoundingClientRect().height) - 35;
-        rows = (mainHeight/30|0);
+//        mainHeight = parseInt($('main').getBoundingClientRect().height) - 35;
+//        rows = (mainHeight/30|0);
 
         // --- Construction du tableau ---
         let HTML = '';
@@ -32,9 +33,7 @@ dsm.views.lists =
             HTML += "<tr id='r"+r+"' onclick=\"dsm.controlers.lists.onclick(this.id,'"+dsm.controlers.lists.view+"',"+r+");\">";
             for(c=0; c < cols; c++) 
             {
-                //HTML += "<td id='r"+r+"c"+c+"' onclick='dsm.controlers.lists.select(this.id);' ondblclick=\"dsm.controlers.form.openForm("+dsm.models.lists.view+","+r+");\"></td>";
                 HTML += "<td id='r"+r+"c"+c+"'></td>";
-               
             }
             HTML += "</tr>";
         }
@@ -60,7 +59,6 @@ dsm.views.lists =
     {
 
         console.log('dsm.views.lists.fill();');
-
 
         dsm.models.lists.rows = dsm.models.lists.records.length;
         dsm.models.lists.cols = dsm.models.lists.records[0].length;

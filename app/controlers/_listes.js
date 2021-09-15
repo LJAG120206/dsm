@@ -30,7 +30,9 @@ dsm.controlers.lists =
         if(responseText != '' && responseText.substring(0,6) != 'Erreur')
         {
             dsm.models.lists.records = JSON.parse(responseText);
-            dsm.models.controlers.lists.length = dsm.models.lists.records.length;
+
+            dsm.models.lists.rows = dsm.models.lists.records.length;
+            dsm.models.lists.cols = dsm.models.lists.records[0].length;
 
             switch(dsm.controlers.lists.view)
             {
@@ -178,28 +180,6 @@ dsm.controlers.lists =
             id = id_r_[0];
             r  = id_r_[1];
             console.log(id+'='+r);
-
-            for(let i=0; i<dsm.models.lists.records.length; i++)
-            {
-                ii = i+1;
-                if($('r'+ii+'c0').innerHTML == id)
-                {
-                    if(r == 1)
-                    {
-                        console.log('r'+ii);
-                        $('r'+ii).remove();
-
-                        let l = dsm.controlers.lists.selected.length;
-                        for(let j=0; j<l; j++)
-                        {
-                            if(dsm.controlers.lists.selected[j] == 'r'+ii)
-                            {
-                                dsm.controlers.lists.selected.splice(j,1); 
-                            }
-                        }
-                    }
-                }
-            }
         });
     }
 }
