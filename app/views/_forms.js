@@ -22,15 +22,16 @@ dsm.views.forms =
         createElement('formWindowMain','div','formContent');
         createElement(formWindowId,"div","formWindowCmd");
         createElement('formWindowCmd','button','Enregistrer');
-        $('Enregistrer').innerHTML = "Enregistrer";
+        $('Enregistrer').innerHTML = "Enregistrer"; 
+        createElement('formWindowCmd','button','Supprimer');
+        $('Supprimer').innerHTML = "Supprimer";
         createElement('formWindowCmd','button','Fermer');
         $('Fermer').innerHTML = "Fermer";
         $('Fermer').onclick = function(){
             dsm.views.overlay.stop();
             $('formWindow').remove();
          }
-        createElement('formWindowCmd','button','Supprimer');
-        $('Supprimer').innerHTML = "Supprimer";
+       
 
 
         for(let i=1; i<this.records[0].length ; i++ )
