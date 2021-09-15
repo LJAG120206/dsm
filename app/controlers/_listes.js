@@ -53,19 +53,19 @@ dsm.controlers.lists =
         }
     },
 
-    select:(n)=>
+    select:(id)=>
     {
         console.log("dsm.controlers.lists.select()");
-        let id = $(n+"c0").innerHTML;
+        
         let selected = dsm.controlers.lists.selected;
-        if(id != "")
+        if($(id+"c0").innerHTML != "")
         {
             let found = false;
             for(let i = 0 ; i < selected.length; i ++)
             {
                 if(selected[i] == id)
                 {
-                    $(n).style.boxShadow = "none";
+                    $(id).style.boxShadow = "none";
                     selected.splice(i,1);
                     found = true;
                     break;
@@ -74,11 +74,13 @@ dsm.controlers.lists =
 
             if(found == false)
             {
-                $(n).style.boxShadow = "0px 0px 30px 15px lightblue  inset";
+                $(id).style.boxShadow = "0px 0px 30px 15px lightblue  inset";
                 selected.push(id);
             }
         }
     },
+
+
 
 
     onclick:(n,v,r)=>
@@ -111,6 +113,21 @@ dsm.controlers.lists =
                 dsm.controlers.lists.delay = 0;                    
             }   
              
+        }
+    },
+
+    delete:()=>
+    {
+        
+        let selected = dsm.controlers.lists.selected;
+        console.log("longueur "+selected.length);
+        let l = selected.length;
+        for(let i = 0; i<l ; i++)
+        {
+            console.log("test "+i+" s[i] ="+selected[i]);
+            $(selected[0]).remove();
+            selected.shift();
+            console.log(selected);
         }
     }
 }
