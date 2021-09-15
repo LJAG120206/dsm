@@ -1,0 +1,116 @@
+@media (max-width: 360px)
+{
+    #formLogin
+    {
+        position: absolute;
+
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+
+        margin: 0px;
+        padding: 5px;
+
+        background-color: var(--foreground-color);
+        color: var(--color);
+
+        text-align: center;
+
+        z-index: 200;
+        transition: 1s all ease;
+    }
+
+    #formLogin input
+    {
+        margin: 10px 30px;
+        width: calc(100% - 60px);
+        height: 30px;
+        border: 2px solid var(--border-color);
+
+        transition: 1s all ease;
+    }
+
+    #formLogin h1
+    {
+        margin: 0px 0px 20px 0px;
+        padding: 10px;
+
+        border-bottom: 1px solid var(--border-color);
+
+        font-size: 150%;
+        letter-spacing: 2;
+
+        transition: 1s all ease;
+    }
+
+    #formLogin p
+    {
+        font-weight: 700;
+        font-size: 100%;
+        color: red;
+        text-shadow: none;
+
+        transition: 1s all ease;
+    }
+}
+
+@media (min-width: 361px)
+{
+    #formLogin
+    {
+        position: absolute;
+        top: calc(50% - 140px);
+        left: calc(50% - 140px);
+        padding: 5px;
+        width: 270px;
+        height: 260px;
+
+        border: 1px solid;
+        box-shadow: 0px 3px 5px var(--shadow-color);
+
+        border: 1px solid var(--border-color);
+        background-color: var(--foreground-color);
+        color: var(--color);
+
+        text-align: center;
+
+        z-index: 200;
+        transition: 1s all ease;
+    }
+
+    #formLogin input
+    {
+        margin: 10px;
+        width: 200px;
+        height: 30px;
+
+        border: 2px solid var(--border-color);
+
+        transition: 1s all ease;
+    }
+
+    #formLogin h1
+    {
+        margin: 0px 0px 20px 0px;
+        padding: 10px;
+
+        border-bottom: 1px solid var(--border-color);
+
+        font-family: 'Montserrat', 'Arial', sans-serif;
+        font-weight: 700;
+        font-size: 150%;
+        letter-spacing: 2;
+
+        transition: 1s all ease;
+    }
+
+    #formLogin p
+    {
+        font-weight: 700;
+        font-size: 100%;
+        color: red;
+
+        transition: 1s all ease;
+    }
+}

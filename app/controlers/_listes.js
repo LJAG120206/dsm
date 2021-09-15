@@ -5,7 +5,7 @@ dsm.controlers.lists =
     click : 0,
     pid : null,
     delay: 0,
-    boxLine: Array(),
+    length: 0,
 
     
 
@@ -30,6 +30,7 @@ dsm.controlers.lists =
         if(responseText != '' && responseText.substring(0,6) != 'Erreur')
         {
             dsm.models.lists.records = JSON.parse(responseText);
+            dsm.models.controlers.lists.length = dsm.models.lists.records.length;
 
             switch(dsm.controlers.lists.view)
             {
@@ -52,36 +53,6 @@ dsm.controlers.lists =
             dsm.views.lists.fill();
         }
     },
-
-    select:(id)=>
-    {
-        console.log("dsm.controlers.lists.select()");
-        
-        let selected = dsm.controlers.lists.selected;
-        if($(id+"c0").innerHTML != "")
-        {
-            let found = false;
-            for(let i = 0 ; i < selected.length; i ++)
-            {
-                if(selected[i] == id)
-                {
-                    $(id).style.boxShadow = "none";
-                    selected.splice(i,1);
-                    found = true;
-                    break;
-                }
-            }
-
-            if(found == false)
-            {
-                $(id).style.boxShadow = "0px 0px 30px 15px lightblue  inset";
-                selected.push(id);
-            }
-        }
-    },
-
-
-
 
     onclick:(n,v,r)=>
     {
@@ -116,9 +87,72 @@ dsm.controlers.lists =
         }
     },
 
+    select:(id)=>
+    {
+        console.log("dsm.controlers.lists.select()");
+        
+        let selected = dsm.controlers.lists.selected;
+        if($(id+"c0").innerHTML != "")
+        {
+            let found = false;
+            for(let i = 0 ; i < selected.length; i ++)
+            {
+                if(selected[i] == id)
+                {
+                    $(id).style.boxShadow = "none";
+                    selected.splice(i,1);
+                    found = true;
+                    break;
+                }
+            }
+
+            if(found == false)
+            {
+                $(id).style.boxShadow = "0px 0px 30px 15px lightblue  inset";
+                selected.push(id);
+            }
+        }
+    },
+
     delete:()=>
     {
+        let selected = dsm.controlers.lists.selected;
+        let ids_ = [];
+        let ids = '';
+
+        selected.forEach(tr =>
+        {
+            ids += $(tr+'c0').innerHTML + ',';   
+        });
+        ids = ids.substring(0,ids.length -1);
         
+        let data = new FormData;
+        data.append('ids',ids);
+
+        // AJAX
+
+        let ajax = new XMLHttpRequest();
+
+        ajax.open("POST","models/sql.php?type=delete&view="+dsm.controlers.lists.view);
+
+        ajax.onreadystatechange = () =>
+        {
+            if(ajax.readyState == XMLHttpRequest.DONE)
+            {
+                if(ajax.statusText == 'OK')
+                {
+                    dsm.controlers.lists.deleteCallback(ajax.responseText);
+                }
+                else
+                {
+                    dsm.controlers.lists.deleteCallback("Erreur "+ajax.status);
+                }
+            }
+        }
+
+        ajax.send(data);
+
+        /*
         let selected = dsm.controlers.lists.selected;
         console.log("longueur "+selected.length);
         let l = selected.length;
@@ -129,5 +163,43 @@ dsm.controlers.lists =
             selected.shift();
             console.log(selected);
         }
+        */
+    },
+
+    deleteCallback: (responseText) =>
+    {
+        console.log("dsm.controlers.lists.deleteCallback(\""+responseText+"\")");
+
+        let ids = responseText.split("\n");
+        ids.forEach(id_r => 
+        {
+            console.log(id_r);
+            let id_r_ = id_r.split(':');
+            id = id_r_[0];
+            r  = id_r_[1];
+            console.log(id+'='+r);
+
+            for(let i=0; i<dsm.models.lists.records.length; i++)
+            {
+                ii = i+1;
+                if($('r'+ii+'c0').innerHTML == id)
+                {
+                    if(r == 1)
+                    {
+                        console.log('r'+ii);
+                        $('r'+ii).remove();
+
+                        let l = dsm.controlers.lists.selected.length;
+                        for(let j=0; j<l; j++)
+                        {
+                            if(dsm.controlers.lists.selected[j] == 'r'+ii)
+                            {
+                                dsm.controlers.lists.selected.splice(j,1); 
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 }

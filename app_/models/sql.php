@@ -11,13 +11,12 @@ require_once("_sql.php");
 
     $type = trim($_GET['type']);
     $view = trim($_GET['view']);
-
+    
+    $SQL = new SQL($type.'_'.$view.'_');
+    $SQL->setFetchMode(1);
     
     if($type=="list")
     {
-        $SQL = new SQL($type.'_'.$view.'_');
-        $SQL->setFetchMode(1);
-
         $records = $SQL->select(TRUE, $limit);
         if($SQL->count > 0)
         {
@@ -27,9 +26,6 @@ require_once("_sql.php");
     }
     else if($type=="form" && is_numeric($_GET['id']) == TRUE)
     {
-        $SQL = new SQL($type.'_'.$view.'_');
-        $SQL->setFetchMode(1);
-
         $a = [];
         $a[0] = $_GET["id"];
         $records = $SQL->select(TRUE, "WHERE `id` =?", $a);
@@ -40,42 +36,13 @@ require_once("_sql.php");
     
         }
     }
-    else if($type=="select")
+    else if($type =="select")
     {
-        $SQL = new SQL($type.'_'.$view.'_');
-        $SQL->setFetchMode(1);
-
         $records = $SQL->select(FALSE, $limit);
         if($SQL->count > 0)
         {
             header('content-type: application/json');
             print(json_encode($records));
         }
-    }
-    else if($type=="delete")
-    {
-        header('content-type: text/plain');
-
-        $view = 'identites';
-
-        $SQL = new SQL($view);
-        $SQL->setFetchMode(1);
-
-        $ids  = trim($_POST['ids']);
-        $ids_ = explode(',',$ids);
-
-        $output = '';
-        foreach($ids_ as $wid)
-        {
-            $fields = [];
-            array_push($fields,'_status');
-
-            $values = [];
-            array_push($values,0);
-
-            $output .= $wid.':'.$SQL->update($fields, $values, $wid)."\n";
-        }
-        $output = substr($output,0,strlen($output) -1);
-        print($output);
     }
 }

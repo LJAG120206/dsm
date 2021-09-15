@@ -1,0 +1,84 @@
+let dsm = {
+    version: "0.01",
+    code: [],
+    models: {},
+    controlers: {},
+    views: {},
+    reports: {}
+};
+
+function $(id)
+{
+    return(document.getElementById(id));
+}
+
+function loadJS(file, o)
+{
+    console.log("loadJS("+file+");");
+
+    let ajax = new XMLHttpRequest();
+
+    ajax.open("GET",file,true);
+    ajax.onreadystatechange = () =>
+    {
+        if (ajax.readyState == XMLHttpRequest.DONE)
+        {
+            dsm.code[o] = ajax.responseText;
+        }
+    }
+    ajax.send();
+}
+
+function init()
+{
+    console.log("init();");
+
+    if(localStorage.getItem('version') != dsm.version)
+    {
+        // -- Models ----------------------
+        loadJS("models/models.js",1);
+        loadJS("models/_session.js",2);
+        loadJS("models/_login.js",3);
+
+        // -- Models ----------------------
+        loadJS("controlers/controlers.js",4);
+        loadJS("controlers/_session.js",5);
+        loadJS("controlers/_login.js",6);
+        loadJS("controlers/_accueil.js",7);
+        loadJS("controlers/_listes.js",8);
+
+        // -- Models ----------------------
+        loadJS("views/views.js",9);
+        loadJS("views/_login.js",10);
+        loadJS("views/_accueil.js",11);
+        loadJS("views/_listes.js",12);
+    }
+}
+
+function run()
+{
+    let OK = true;
+    for(i=1; i<=12; i++)
+    {
+        if(dsm.code[i] == 'undefined')
+        {
+            OK == false;
+        }                
+    }
+
+    if(OK)
+    {
+        let codeJS = '';
+        for(i=1; i<=12; i++)
+        {
+            codeJS += code;
+        }
+        eval(codeJS);
+
+        dsm.controlers.login.form();
+    }
+    else
+    {
+        setTimeout("run()", 1);
+    }
+}
