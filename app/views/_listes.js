@@ -49,7 +49,7 @@ dsm.views.lists =
 
         HTML += "<div id='cmdList'>";
         HTML += '<button title="Ajouter un adhérent" onclick="dsm.controlers.accueil.openForm()">Ajouter</button>';
-        HTML += '<button title="Supprimer un plusieurs adhérents" onclick="dsm.controlers.accueil.openForm()">Supprimer</button>';
+        HTML += '<button title="Supprimer un plusieurs adhérents" onclick="dsm.controlers.lists.delete()">Supprimer</button>';
         HTML += '<button title="Fermer la liste" onclick="dsm.controlers.accueil.openForm()">Fermer</button>';
         HTML += "</div>";
 
