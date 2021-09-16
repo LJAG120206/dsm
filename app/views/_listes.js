@@ -11,9 +11,13 @@ dsm.views.lists =
 
         $('title').innerHTML = dsm.views.lists.title.toUpperCase();
 
-//        mainHeight = parseInt($('main').getBoundingClientRect().height) - 35;
-//        rows = (mainHeight/30|0);
+        mainHeight = parseInt($('main').getBoundingClientRect().height) - 35;
+        rows = (mainHeight/30|0);
 
+        if((dsm.models.lists.rows -1) < rows)
+        {
+            rows = dsm.models.lists.rows -1;
+        }
         // --- Construction du tableau ---
         let HTML = '';
         
