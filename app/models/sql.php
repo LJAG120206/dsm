@@ -11,17 +11,28 @@ require_once("_sql.php");
 
     $type = trim($_GET['type']);
     $view = trim($_GET['view']);
+
     
     if($type=="list")
     {
+        $cmd = (isset($_GET['cmd'])) ? trim($_GET['cmd']) : "";
         $SQL = new SQL($type.'_'.$view.'_');
         $SQL->setFetchMode(1);
 
-        $records = $SQL->select(TRUE, $limit);
-        if($SQL->count > 0)
+        if($cmd == "count")
         {
-            header('content-type: application/json');
-            print(json_encode($records));
+            $count = $SQL->count();
+            header('content-type: text/plain');
+            print($count);
+        }
+        else
+        {
+            $records = $SQL->select(TRUE, $limit);
+            if($SQL->count > 0)
+            {
+                header('content-type: application/json');
+                print(json_encode($records));
+            }
         }
     }
     else if($type=="form" && is_numeric($_GET['id']) == TRUE)
@@ -36,7 +47,6 @@ require_once("_sql.php");
         {
             header('content-type: application/json');
             print(json_encode($records));
-    
         }
     }
     else if($type=="select")

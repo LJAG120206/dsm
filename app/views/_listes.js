@@ -11,8 +11,8 @@ dsm.views.lists =
 
         $('title').innerHTML = dsm.views.lists.title.toUpperCase();
 
-        mainHeight = parseInt($('main').getBoundingClientRect().height) - 35;
-        rows = (mainHeight/30|0);
+        // mainHeight = parseInt($('main').getBoundingClientRect().height) - 35;
+        // rows = (mainHeight/30|0);
 
         if((dsm.models.lists.rows -1) < rows)
         {
@@ -51,6 +51,8 @@ dsm.views.lists =
         HTML = '';
 
         HTML += "<div id='cmdList'>";
+        HTML += '<button title="Page précédente" onclick="dsm.controlers.lists.openForm('+(dsm.controlers.lists.rows-1)+','+dsm.controlers.lists.rows+')>Précédent</button>'
+        HTML += '<button title="Page suivante" onclick="dsm.controlers.lists.openForm('+(dsm.controlers.lists.rows+1)+','+dsm.controlers.lists.rows+')>Suivant</button>'
         HTML += '<button title="Ajouter un adhérent" onclick="dsm.controlers.accueil.openForm()">Ajouter</button>';
         HTML += '<button title="Supprimer un plusieurs adhérents" onclick="dsm.controlers.lists.delete()">Supprimer</button>';
         HTML += '<button title="Fermer la liste" onclick="dsm.controlers.accueil.openForm()">Fermer</button>';

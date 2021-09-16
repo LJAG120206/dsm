@@ -6,16 +6,26 @@ dsm.controlers.lists =
     pid : null,
     delay: 0,
     length: 0,
+    rows : 0,
+    totalRows: 0,
+    offset: 0,
 
     
 
     openForm: (view) =>
     {
+        let mainHeight = parseInt($('main').getBoundingClientRect().height) - 35;
+        dsm.controlers.lists.rows = (mainHeight/30|0);
         console.log("dsm.controlers.lists.openForm();");
+                
         if(dsm.controlers.session.check() == true)
         {
+            if(view !== dsm.controlers.lists.view)
+            {
+                dsm.controlers.lists.offset = 0;
+            }
             dsm.controlers.lists.view = view;
-            dsm.models.lists.getRows(view);
+            dsm.models.lists.getRowsNumber(view);
         }
         else
         {
@@ -26,6 +36,7 @@ dsm.controlers.lists =
     callback: (responseText) =>
     {
         console.log("dsm.controlers.lists.callback();");
+        console.log("responseText:"+responseText);
 
         if(responseText != '' && responseText.substring(0,6) != 'Erreur')
         {
@@ -54,6 +65,15 @@ dsm.controlers.lists =
             dsm.views.lists.openForm();
             dsm.views.lists.fill();
         }
+    },
+
+    callbackRowsNumber:(view,responseText)=>
+    {
+        console.log("dsm.controlers.lists.callbackRowsNumber();");
+
+        dsm.controlers.lists.totalRows =(responseText != '' && responseText.substring(0,6) != 'Erreur') ? parseInt(responseText) : 0;
+        console.log("totalRows = "+dsm.controlers.lists.totalRows);
+        dsm.models.lists.getRows(view, dsm.controlers.lists.rows);
     },
 
     onclick:(n,v,r)=>

@@ -165,7 +165,7 @@ class SQL
 
 	public $fetchMode = 0;
 
-	public $count = 0;
+	//public $count = 0;
 
     public function __construct($table)
     {
@@ -174,7 +174,7 @@ class SQL
 		debug("SQL(\"$table\")");
 
 		$table = trim($table);
-
+ 
 		try
 		{
 	        $this->connection = new PDO("mysql:host=".MYSQL_HOST."; port=".MYSQL_PORT."; dbname=".MYSQL_DB."; charset=utf8mb4", MYSQL_USER, MYSQL_PWD);
@@ -214,6 +214,17 @@ class SQL
 			default :	$this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 		}
 		$this->fetchMode = $mode;
+	}
+
+	public function count()
+	{
+		$SQL = "SELECT COUNT(*) FROM `".$this->table."`";
+		$result = $this->connection->prepare($SQL);
+		$result->execute();
+		$records = $result->fetchAll();
+		$count = $records[0][0];
+		return($count);
+
 	}
 
 	public function select($header=FALSE,$where='',$values=array())
