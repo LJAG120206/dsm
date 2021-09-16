@@ -27,12 +27,10 @@ dsm.controlers.lists =
     {
         console.log("dsm.controlers.lists.callback();");
 
-        if(responseText != '' && responseText.substring(0,6) != 'Erreur')
+        if(responseText != '' && responseText.substring(0,6) != 'Erreur')
         {
             dsm.models.lists.records = JSON.parse(responseText);
-
-            dsm.models.lists.rows = dsm.models.lists.records.length;
-            dsm.models.lists.cols = dsm.models.lists.records[0].length;
+            dsm.models.lists.length = dsm.models.lists.records.length;
 
             switch(dsm.controlers.lists.view)
             {
